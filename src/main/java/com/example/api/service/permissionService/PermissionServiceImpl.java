@@ -25,4 +25,10 @@ public class PermissionServiceImpl implements PermissionService{
     public Permission findPermission(String permissionName) {
         return permissionRepository.findById(permissionName).orElse(null);
     }
+
+    @Override
+    @Transactional(readOnly = false)
+    public void savePermission(Permission permission) {
+        permissionRepository.save(permission);
+    }
 }

@@ -18,10 +18,10 @@ public class RoleRestController {
 
     @GetMapping("/roles")
     public List<Role> showRoles(){
-        return (List<Role>) roleRepository.findAll();
+        return roleRepository.findAll();
     }
 
-    @PostMapping("/roles/saverole")
+    @PostMapping("/roles/save")
     public String saveRole(@RequestBody Role role){
         roleRepository.save(role);
         return "the role has been save";
