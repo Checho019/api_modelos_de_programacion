@@ -4,6 +4,7 @@ import com.example.api.entity.User;
 import com.example.api.service.roleService.RoleService;
 import com.example.api.service.userService.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class UserRestController {
     }
     @PostMapping("/saveuser")
     public String saveUser(@RequestBody User s){
+        s.setPass(new BCryptPasswordEncoder().encode(s.getPass()));
         userService.saveUser(s);
         return "Usuario creado";
     }
